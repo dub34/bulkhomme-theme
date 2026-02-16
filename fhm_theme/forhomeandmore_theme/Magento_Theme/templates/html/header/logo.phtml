@@ -1,0 +1,23 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Logo Template
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Theme\Block\Html\Header\Logo
+ */
+?>
+
+<div class="logo">
+    <a href="<?php echo $block->escapeUrl($block->getUrl('')); ?>"
+       title="<?php echo $block->escapeHtmlAttr($block->getLogoAlt()); ?>"
+       aria-label="<?php echo $block->escapeHtmlAttr(__('Store Logo')); ?>">
+        <img src="<?php echo $block->escapeUrl($block->getLogoSrc()); ?>"
+             alt="<?php echo $block->escapeHtmlAttr($block->getLogoAlt()); ?>"
+             width="<?php echo $block->escapeHtmlAttr($block->getLogoWidth()); ?>"
+             height="<?php echo $block->escapeHtmlAttr($block->getLogoHeight()); ?>" />
+    </a>
+</div>

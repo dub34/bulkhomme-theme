@@ -1,0 +1,383 @@
+/**
+ * ForHomeAndMore Theme - CSS Custom Properties (Design Tokens)
+ *
+ * This file defines all CSS variables extracted from Figma design.
+ * Modern approach using CSS custom properties instead of LESS variables.
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ */
+
+:root {
+    /* ==========================================
+       COLOR SYSTEM (Extracted from Figma)
+       ========================================== */
+
+    /* Primary & Accent Colors */
+    --color-primary-blue: #0071bc;       /* Search, links, primary buttons */
+    --color-accent-blue: #6aabdd;        /* Buttons, accents, dividers */
+    --color-orange: #ff6d00;             /* Badges, cart count, discounts */
+    --color-gold-brown: #bb8760;         /* Exclusive badge, discount percentages */
+
+    /* Neutral Colors */
+    --color-black: #000000;              /* Header bar, footer */
+    --color-white: #ffffff;              /* Backgrounds, text on dark */
+    --color-light-gray: #f7f7f7;         /* Page backgrounds */
+    --color-medium-gray: #646464;        /* Secondary text */
+    --color-dark-gray: #323232;          /* Form placeholders */
+    --color-gray: #a4a4a4;               /* Crossed out prices */
+
+    /* Status & Semantic Colors */
+    --color-green: #5bb700;              /* In-stock indicator */
+    --color-yellow: #ffe100;             /* Coming soon indicator */
+    --color-red: red;                    /* Sale text in navigation */
+
+    /* Component-Specific Color Mappings */
+    --color-primary: var(--color-primary-blue);
+    --color-secondary: var(--color-accent-blue);
+    --color-accent: var(--color-orange);
+
+    /* Background Colors */
+    --color-bg-primary: var(--color-white);
+    --color-bg-secondary: var(--color-light-gray);
+    --color-bg-dark: var(--color-black);
+
+    /* Text Colors */
+    --color-text-primary: var(--color-black);
+    --color-text-secondary: var(--color-medium-gray);
+    --color-text-tertiary: var(--color-gray);
+    --color-text-placeholder: var(--color-dark-gray);
+    --color-text-inverse: var(--color-white);
+
+    /* Border Colors */
+    --color-border-light: var(--color-light-gray);
+    --color-border-medium: var(--color-gray);
+    --color-border-dark: var(--color-dark-gray);
+    --color-border-accent: var(--color-accent-blue);
+
+    /* Status Colors */
+    --color-success: var(--color-green);
+    --color-warning: var(--color-yellow);
+    --color-error: var(--color-red);
+    --color-info: var(--color-primary-blue);
+
+    /* ==========================================
+       TYPOGRAPHY (Extracted from Figma)
+       ========================================== */
+
+    /* Font Families */
+    --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-heading: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-monospace: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+
+    /* Font Sizes (Exact from Figma) */
+    --font-size-10: 0.625rem;     /* 10px */
+    --font-size-12: 0.75rem;      /* 12px */
+    --font-size-14: 0.875rem;     /* 14px */
+    --font-size-16: 1rem;         /* 16px */
+    --font-size-18: 1.125rem;     /* 18px */
+    --font-size-20: 1.25rem;      /* 20px */
+    --font-size-24: 1.5rem;       /* 24px */
+    --font-size-28: 1.75rem;      /* 28px */
+    --font-size-36: 2.25rem;      /* 36px */
+    --font-size-80: 5rem;         /* 80px */
+
+    /* Font Size Aliases (Semantic) */
+    --font-size-xs: var(--font-size-10);
+    --font-size-sm: var(--font-size-12);
+    --font-size-base: var(--font-size-14);
+    --font-size-md: var(--font-size-16);
+    --font-size-lg: var(--font-size-18);
+    --font-size-xl: var(--font-size-20);
+    --font-size-2xl: var(--font-size-24);
+    --font-size-3xl: var(--font-size-28);
+    --font-size-4xl: var(--font-size-36);
+    --font-size-5xl: var(--font-size-80);
+
+    /* Font Weights (Inter Family) */
+    --font-weight-light: 300;         /* Inter Light */
+    --font-weight-normal: 400;        /* Inter Regular */
+    --font-weight-medium: 500;        /* Inter Medium */
+    --font-weight-bold: 700;          /* Inter Bold */
+
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.3;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.6;
+    --line-height-loose: 1.8;
+
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.025em;
+    --letter-spacing-normal: 0;
+    --letter-spacing-wide: 0.025em;
+    --letter-spacing-wider: 0.05em;
+
+    /* ==========================================
+       SPACING SYSTEM
+       ========================================== */
+
+    /* Base Spacing Scale */
+    --spacing-0: 0;
+    --spacing-2: 0.125rem;     /* 2px */
+    --spacing-4: 0.25rem;      /* 4px */
+    --spacing-8: 0.5rem;       /* 8px */
+    --spacing-10: 0.625rem;    /* 10px */
+    --spacing-12: 0.75rem;     /* 12px */
+    --spacing-16: 1rem;        /* 16px */
+    --spacing-20: 1.25rem;     /* 20px - Grid gap from Figma */
+    --spacing-24: 1.5rem;      /* 24px */
+    --spacing-32: 2rem;        /* 32px */
+    --spacing-40: 2.5rem;      /* 40px */
+    --spacing-48: 3rem;        /* 48px */
+    --spacing-64: 4rem;        /* 64px */
+    --spacing-80: 5rem;        /* 80px */
+    --spacing-128: 8rem;       /* 128px */
+    --spacing-250: 15.625rem;  /* 250px - Desktop side padding from Figma */
+
+    /* Spacing Aliases (Semantic) */
+    --spacing-xs: var(--spacing-4);
+    --spacing-sm: var(--spacing-8);
+    --spacing-md: var(--spacing-16);
+    --spacing-lg: var(--spacing-24);
+    --spacing-xl: var(--spacing-32);
+    --spacing-2xl: var(--spacing-48);
+    --spacing-3xl: var(--spacing-64);
+
+    /* ==========================================
+       LAYOUT & GRID (From Figma Canvas)
+       ========================================== */
+
+    /* Container Widths */
+    --container-max-width: 1420px;        /* Content area: 1670px - 250px */
+    --container-full-width: 1920px;       /* Canvas width */
+    --container-side-padding: 250px;      /* Side padding on desktop */
+
+    /* Responsive Container Padding */
+    --container-padding-mobile: var(--spacing-16);
+    --container-padding-tablet: var(--spacing-32);
+    --container-padding-desktop: var(--spacing-250);
+
+    /* Grid Gaps (From Figma) */
+    --grid-gap-product: var(--spacing-20);   /* 20px product grid gap */
+    --grid-gap-sm: var(--spacing-12);
+    --grid-gap-md: var(--spacing-16);
+    --grid-gap-lg: var(--spacing-20);
+    --grid-gap-xl: var(--spacing-24);
+
+    /* Product Grid Columns */
+    --grid-columns-mobile: 2;
+    --grid-columns-tablet: 3;
+    --grid-columns-desktop: 4;
+    --grid-columns-wide: 5;
+
+    /* ==========================================
+       BORDERS & RADIUS
+       ========================================== */
+
+    /* Border Widths */
+    --border-width-thin: 1px;
+    --border-width-base: 1px;
+    --border-width-thick: 2px;
+
+    /* Border Radius (Minimal/Sharp Design) */
+    --border-radius-none: 0;
+    --border-radius-sm: 2px;
+    --border-radius-base: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+    --border-radius-full: 9999px;
+
+    /* ==========================================
+       SHADOWS
+       ========================================== */
+
+    --shadow-none: none;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+    /* ==========================================
+       TRANSITIONS & ANIMATIONS
+       ========================================== */
+
+    /* Transition Durations */
+    --transition-fast: 150ms;
+    --transition-base: 250ms;
+    --transition-slow: 350ms;
+    --transition-slower: 500ms;
+
+    /* Transition Timings */
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ==========================================
+       Z-INDEX LAYERS
+       ========================================== */
+
+    --z-index-dropdown: 1000;
+    --z-index-sticky: 1020;
+    --z-index-fixed: 1030;
+    --z-index-modal-backdrop: 1040;
+    --z-index-modal: 1050;
+    --z-index-offcanvas: 1055;
+    --z-index-popover: 1060;
+    --z-index-tooltip: 1070;
+
+    /* ==========================================
+       BREAKPOINTS (from Figma & etc/view.xml)
+       ========================================== */
+
+    --breakpoint-mobile-small: 640px;
+    --breakpoint-mobile: 768px;
+    --breakpoint-tablet: 1024px;
+    --breakpoint-desktop: 1024px;
+    --breakpoint-wide: 1440px;
+    --breakpoint-ultra-wide: 1920px;
+
+    /* ==========================================
+       COMPONENT-SPECIFIC TOKENS
+       ========================================== */
+
+    /* Buttons */
+    --button-primary-bg: var(--color-primary-blue);
+    --button-primary-text: var(--color-white);
+    --button-secondary-bg: var(--color-accent-blue);
+    --button-secondary-text: var(--color-white);
+    --button-accent-bg: var(--color-orange);
+    --button-accent-text: var(--color-white);
+    --button-padding-x: var(--spacing-24);
+    --button-padding-y: var(--spacing-12);
+    --button-border-radius: var(--border-radius-base);
+
+    /* Badges */
+    --badge-exclusive-bg: var(--color-gold-brown);
+    --badge-exclusive-text: var(--color-white);
+    --badge-discount-bg: var(--color-orange);
+    --badge-discount-text: var(--color-white);
+    --badge-sale-bg: var(--color-red);
+    --badge-sale-text: var(--color-white);
+    --badge-new-bg: var(--color-green);
+    --badge-new-text: var(--color-white);
+    --badge-padding-x: var(--spacing-8);
+    --badge-padding-y: var(--spacing-4);
+    --badge-border-radius: var(--border-radius-sm);
+
+    /* Forms */
+    --input-bg: var(--color-white);
+    --input-border: var(--color-border-medium);
+    --input-border-focus: var(--color-primary-blue);
+    --input-text: var(--color-black);
+    --input-placeholder: var(--color-dark-gray);
+    --input-padding-x: var(--spacing-16);
+    --input-padding-y: var(--spacing-12);
+    --input-border-radius: var(--border-radius-base);
+
+    /* Header */
+    --header-bg: var(--color-black);
+    --header-text: var(--color-white);
+    --header-height-mobile: 60px;
+    --header-height-desktop: 80px;
+
+    /* Footer */
+    --footer-bg: var(--color-black);
+    --footer-text: var(--color-white);
+    --footer-link-color: var(--color-white);
+    --footer-link-hover: var(--color-accent-blue);
+
+    /* Product Card */
+    --product-card-bg: var(--color-white);
+    --product-card-border: var(--color-border-light);
+    --product-card-hover-shadow: var(--shadow-md);
+    --product-card-border-radius: var(--border-radius-none);
+
+    /* Links */
+    --link-color: var(--color-primary-blue);
+    --link-hover-color: var(--color-accent-blue);
+    --link-decoration: none;
+    --link-hover-decoration: underline;
+
+    /* Cart Count */
+    --cart-count-bg: var(--color-orange);
+    --cart-count-text: var(--color-white);
+    --cart-count-size: 18px;
+
+    /* Stock Status */
+    --stock-in-stock-color: var(--color-green);
+    --stock-coming-soon-color: var(--color-yellow);
+    --stock-out-of-stock-color: var(--color-red);
+
+    /* Price */
+    --price-regular-color: var(--color-black);
+    --price-special-color: var(--color-red);
+    --price-old-color: var(--color-gray);
+    --price-discount-color: var(--color-gold-brown);
+}
+
+/* ==========================================
+   RESPONSIVE VARIABLE ADJUSTMENTS
+   ========================================== */
+
+/* Mobile Small (<640px) */
+@media (max-width: 639px) {
+    :root {
+        --container-padding: var(--container-padding-mobile);
+        --grid-gap: var(--grid-gap-sm);
+        --grid-columns: var(--grid-columns-mobile);
+        --header-height: var(--header-height-mobile);
+        --font-size-base: var(--font-size-12);
+    }
+}
+
+/* Mobile (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+    :root {
+        --container-padding: var(--container-padding-mobile);
+        --grid-gap: var(--grid-gap-md);
+        --grid-columns: var(--grid-columns-mobile);
+        --header-height: var(--header-height-mobile);
+        --font-size-base: var(--font-size-14);
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    :root {
+        --container-padding: var(--container-padding-tablet);
+        --grid-gap: var(--grid-gap-lg);
+        --grid-columns: var(--grid-columns-tablet);
+        --header-height: var(--header-height-desktop);
+        --font-size-base: var(--font-size-14);
+    }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+    :root {
+        --container-padding: var(--container-padding-desktop);
+        --grid-gap: var(--grid-gap-product);
+        --grid-columns: var(--grid-columns-desktop);
+        --header-height: var(--header-height-desktop);
+        --font-size-base: var(--font-size-14);
+    }
+}
+
+/* Wide Desktop (1440px+) */
+@media (min-width: 1440px) {
+    :root {
+        --grid-columns: var(--grid-columns-wide);
+    }
+}
+
+/* Ultra Wide (1920px+) */
+@media (min-width: 1920px) {
+    :root {
+        --container-padding: var(--spacing-250);
+    }
+}

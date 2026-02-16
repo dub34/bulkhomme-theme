@@ -1,0 +1,391 @@
+{{ 'product-premiumcare.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-premiumcare.js' | asset_url }}" defer="defer"></script>
+
+<div class="container">
+  {%- comment -%}
+  ===========================================
+  BREADCRUMBS - Хлебные крошки
+  Данные из админки: коллекции и название товара
+  ===========================================
+  {%- endcomment -%}
+  <ul class="breadcrumbs">
+    <li class="breadcrumb">
+      <a title="{{ shop.name }}" href="{{ routes.root_url }}">
+        <span>{{ shop.name }}</span>
+      </a>
+    </li>
+    {%- if collection -%}
+      <li class="breadcrumb">
+        <a title="{{ collection.title }}" href="{{ collection.url }}">
+          <span>{{ collection.title }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+    {%- if product.vendor != blank and section.settings.show_vendor_breadcrumb -%}
+      <li class="breadcrumb">
+        <a href="{{ product.vendor | url_for_vendor }}" title="{{ product.vendor }}">
+          <span>{{ product.vendor }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+  </ul>
+
+  <div class="product">
+    <div class="product-main">
+      {%- comment -%}
+      ===========================================
+      PRODUCT TITLE - Название товара
+      Данные из админки: product.title
+      ===========================================
+      {%- endcomment -%}
+      <h1 class="product-title">{{ product.title }}</h1>
+
+      {%- comment -%}
+      ===========================================
+      PRODUCT GALLERY SLIDER - Галерея изображений
+      Данные из админки: product.images (все изображения товара)
+      ===========================================
+      {%- endcomment -%}
+      <div class="product-slider" data-product-slider>
+        {%- comment -%} SALE BADGE - Бейдж скидки (если есть) {%- endcomment -%}
+        {%- if product.compare_at_price > product.price -%}
+          {%- assign discount = product.compare_at_price | minus: product.price -%}
+          {%- assign discount_percent = discount | times: 100.0 | divided_by: product.compare_at_price | round -%}
+          <div class="sales">-{{ discount_percent }}%</div>
+        {%- endif -%}
+
+        {%- comment -%} SLIDER CONTROLS - Кнопки навигации {%- endcomment -%}
+        {%- if product.images.size > 1 -%}
+          <div class="slider-controls">
+            <button class="prev slider-btn" type="button" data-slider-prev>
+              Prev
+            </button>
+            <button class="next slider-btn" type="button" data-slider-next>
+              Next
+            </button>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} IMAGES SLIDER - Список изображений {%- endcomment -%}
+        <ul class="slider" data-slider-track>
+          {%- for image in product.images -%}
+            <li class="slide {% if forloop.first %}active{% endif %}" data-slide>
+              <a class="slide-link" href="{{ image | image_url: width: 1000 }}" title="{{ product.title }}">
+                <img
+                  class="slide-img"
+                  src="{{ image | image_url: width: 1000 }}"
+                  alt="{{ product.title }}"
+                  loading="lazy"
+                  width="1000"
+                  height="1000"
+                >
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- comment -%} SLIDER DOTS - Точки навигации {%- endcomment -%}
+        {%- if product.images.size > 1 -%}
+          <ul class="slider-dots" data-slider-dots>
+            {%- for image in product.images -%}
+              <li class="slider-dot {% if forloop.first %}active{% endif %}">
+                <button type="button" data-slide-index="{{ forloop.index0 }}">
+                  {{ forloop.index }}
+                </button>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%}
+      ===========================================
+      PRODUCT DESCRIPTION - Краткое описание
+      Данные из админки:
+      1. section.settings.short_description (настройка секции)
+      2. product.metafields.custom.short_description (metafield товара)
+      3. product.description (автоматически обрезанное описание)
+      ===========================================
+      {%- endcomment -%}
+      {%- if section.settings.short_description != blank -%}
+        <p class="product-desc">{{ section.settings.short_description }}</p>
+      {%- elsif product.metafields.custom.short_description != blank -%}
+        <p class="product-desc">{{ product.metafields.custom.short_description }}</p>
+      {%- else -%}
+        <p class="product-desc">{{ product.description | strip_html | truncate: 200 }}</p>
+      {%- endif -%}
+
+      {%- comment -%}
+      ===========================================
+      PRODUCT FORM - Форма добавления в корзину
+      ===========================================
+      {%- endcomment -%}
+      {%- form 'product', product, id: 'product-form-premiumcare' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+        {%- comment -%}
+        ===========================================
+        VARIANT SELECTOR - Выбор варианта товара
+        Данные из админки: product.options (Volume, Size, Color и т.д.)
+        ===========================================
+        {%- endcomment -%}
+        {%- if product.has_only_default_variant == false -%}
+          {%- for option in product.options_with_values -%}
+            <div class="form-group">
+              <label class="control-label" for="option-{{ option.position }}">
+                {{ option.name }}:
+              </label>
+              <div class="select-select">
+                <select
+                  name="options[{{ option.name }}]"
+                  id="option-{{ option.position }}"
+                  class="form-control select5"
+                >
+                  {%- for value in option.values -%}
+                    <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
+                      {{ value }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+
+        {%- comment -%}
+        ===========================================
+        PRICE - Цена товара
+        Данные из админки:
+        - product.compare_at_price (старая цена, зачеркнутая)
+        - product.price (текущая цена)
+        ===========================================
+        {%- endcomment -%}
+        <div class="prod-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          {%- if product.compare_at_price > product.price -%}
+            <span class="price-old">{{ product.compare_at_price | money }}</span>
+          {%- endif -%}
+          <span class="price">
+            <span id="price-id">{{ product.price | money }}</span>
+          </span>
+          <meta itemprop="price" content="{{ product.price | money_without_currency }}">
+          <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+        </div>
+
+        {%- comment -%}
+        ===========================================
+        QUANTITY & ADD TO CART - Количество и кнопка купить
+        Данные из админки:
+        - section.settings.button_text (текст кнопки)
+        ===========================================
+        {%- endcomment -%}
+        <div class="prod-container-top-left-bottom">
+          <div class="prod-quantity">
+            <input
+              type="number"
+              name="quantity"
+              class="quant form-control"
+              min="1"
+              value="1"
+              id="quantity-input"
+            >
+            <span class="prod-quantity-minus" data-quantity-minus>—</span>
+            <span class="prod-quantity-plus" data-quantity-plus>+</span>
+          </div>
+
+          <button type="submit" class="button" data-add-to-cart>
+            {{ section.settings.button_text | default: 'Add to Cart' }}
+          </button>
+        </div>
+      {%- endform -%}
+    </div>
+
+    {%- comment -%}
+    ===========================================
+    PRODUCT SPECIFICATIONS - Характеристики товара
+    Данные из админки:
+    - section.settings.spec_1_label / spec_1_value
+    - section.settings.spec_2_label / spec_2_value
+    - section.settings.spec_3_label / spec_3_value
+    - section.settings.spec_4_label / spec_4_value
+
+    Также можно использовать metafields:
+    - product.metafields.custom.purpose
+    - product.metafields.custom.application_time
+    - product.metafields.custom.hair_type
+    - product.metafields.custom.country
+    ===========================================
+    {%- endcomment -%}
+    <div class="product-side">
+      <ul>
+        {%- comment -%} Характеристика 1 {%- endcomment -%}
+        {%- if section.settings.spec_1_label != blank -%}
+          <li>
+            <b>{{ section.settings.spec_1_label }}:</b>
+            {%- if section.settings.spec_1_value != blank -%}
+              {{ section.settings.spec_1_value }}
+            {%- elsif product.metafields.custom.purpose != blank -%}
+              {{ product.metafields.custom.purpose }}
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+
+        {%- comment -%} Характеристика 2 {%- endcomment -%}
+        {%- if section.settings.spec_2_label != blank -%}
+          <li>
+            <b>{{ section.settings.spec_2_label }}:</b>
+            {%- if section.settings.spec_2_value != blank -%}
+              {{ section.settings.spec_2_value }}
+            {%- elsif product.metafields.custom.application_time != blank -%}
+              {{ product.metafields.custom.application_time }}
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+
+        {%- comment -%} Характеристика 3 {%- endcomment -%}
+        {%- if section.settings.spec_3_label != blank -%}
+          <li>
+            <b>{{ section.settings.spec_3_label }}:</b>
+            {%- if section.settings.spec_3_value != blank -%}
+              {{ section.settings.spec_3_value }}
+            {%- elsif product.metafields.custom.hair_type != blank -%}
+              {{ product.metafields.custom.hair_type }}
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+
+        {%- comment -%} Характеристика 4 {%- endcomment -%}
+        {%- if section.settings.spec_4_label != blank -%}
+          <li>
+            <b>{{ section.settings.spec_4_label }}:</b>
+            {%- if section.settings.spec_4_value != blank -%}
+              {{ section.settings.spec_4_value }}
+            {%- elsif product.metafields.custom.country != blank -%}
+              {{ product.metafields.custom.country }}
+            {%- endif -%}
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{%- comment -%}
+===========================================
+SCHEMA - НАСТРОЙКИ В АДМИНКЕ SHOPIFY
+===========================================
+Здесь вы можете настроить все поля через админку Shopify:
+- Краткое описание товара
+- Текст кнопки "Купить"
+- 4 характеристики товара (название + значение)
+- Показывать ли бренд в хлебных крошках
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Product Information Premium",
+  "class": "section-product-premiumcare",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Breadcrumbs"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor_breadcrumb",
+      "label": "Show vendor/brand in breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Product Description"
+    },
+    {
+      "type": "textarea",
+      "id": "short_description",
+      "label": "Short Description",
+      "info": "Краткое описание товара. Если не заполнено, будет использоваться автоматическое сокращение из description товара."
+    },
+    {
+      "type": "header",
+      "content": "Add to Cart Button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Add to Cart",
+      "info": "Текст на кнопке добавления в корзину"
+    },
+    {
+      "type": "header",
+      "content": "Product Specifications - Характеристики товара"
+    },
+    {
+      "type": "paragraph",
+      "content": "Настройте до 4 характеристик товара. Если значение не указано, система попытается использовать metafield товара."
+    },
+    {
+      "type": "text",
+      "id": "spec_1_label",
+      "label": "Specification 1 - Label",
+      "default": "Purpose",
+      "info": "Название характеристики, например 'Purpose' или 'Назначение'"
+    },
+    {
+      "type": "text",
+      "id": "spec_1_value",
+      "label": "Specification 1 - Value",
+      "default": "cleansing, nutrition, strengthening, shine, anti-dandruff",
+      "info": "Значение характеристики или оставьте пустым для использования metafield 'custom.purpose'"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_label",
+      "label": "Specification 2 - Label",
+      "default": "Application time",
+      "info": "Название характеристики"
+    },
+    {
+      "type": "text",
+      "id": "spec_2_value",
+      "label": "Specification 2 - Value",
+      "default": "as needed, suitable for daily care",
+      "info": "Значение или оставьте пустым для использования metafield 'custom.application_time'"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_label",
+      "label": "Specification 3 - Label",
+      "default": "Hair type",
+      "info": "Название характеристики"
+    },
+    {
+      "type": "text",
+      "id": "spec_3_value",
+      "label": "Specification 3 - Value",
+      "default": "for all hair types",
+      "info": "Значение или оставьте пустым для использования metafield 'custom.hair_type'"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_label",
+      "label": "Specification 4 - Label",
+      "default": "Made in",
+      "info": "Название характеристики"
+    },
+    {
+      "type": "text",
+      "id": "spec_4_value",
+      "label": "Specification 4 - Value",
+      "default": "Japan",
+      "info": "Значение или оставьте пустым для использования metafield 'custom.country'"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Premium Layout",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

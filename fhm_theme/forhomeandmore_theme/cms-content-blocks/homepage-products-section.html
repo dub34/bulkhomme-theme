@@ -1,0 +1,183 @@
+<!--
+/**
+ * ForHomeAndMore - Fresh Finds Product Grid Section
+ * CMS Block for Homepage - Insert via Content > Blocks
+ * Block Identifier: fhm-homepage-products
+ *
+ * NOTE: This block uses Magento widget for dynamic products.
+ * Replace the static HTML with the widget code below:
+ *
+ * {{widget type="Magento\CatalogWidget\Block\Product\ProductsList"
+ *   title="Fresh finds for the summer and beyond"
+ *   products_count="4"
+ *   template="Magento_CatalogWidget::product/widget/content/grid.phtml"
+ *   conditions_encoded="..."}}
+ */
+-->
+
+<section class="products-section" style="padding: 80px 0;">
+    <div class="container">
+        <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 50px;">Fresh finds for the summer and beyond</h2>
+
+        <!-- Product Grid - Replace with Magento widget in production -->
+        <div class="products-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+
+            <!-- Product Card 1 -->
+            <div class="product-item" style="background: #fff;">
+                <div class="product-item-photo" style="position: relative; height: 340px;">
+                    <img src="{{media url='wysiwyg/products/product-1.jpg'}}" alt="Product" style="width: 100%; height: 100%; object-fit: cover;">
+                    <!-- Badges -->
+                    <div style="position: absolute; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 8px;">
+                        <span style="background: #ff6d00; color: #fff; padding: 6px 10px; font-size: 14px; font-weight: 700;">15% off</span>
+                    </div>
+                    <!-- Wishlist -->
+                    <button style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; background: #fff; border: none; border-radius: 50%; cursor: pointer;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-item-details" style="padding: 20px;">
+                    <p style="font-size: 12px; font-weight: 300; color: #000; margin: 0 0 8px;">Marimekko</p>
+                    <h3 style="font-size: 16px; font-weight: 400; margin: 0 0 16px; line-height: 1.4;">
+                        <a href="#" style="color: #000; text-decoration: none;">Oiva - Piccolo mug, 4 dl, white - green, naming in two lines</a>
+                    </h3>
+                    <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px;">
+                        <span style="font-size: 20px; font-weight: 500;">$25.10</span>
+                        <span style="font-size: 20px; color: #a4a4a4; text-decoration: line-through;">$29.60</span>
+                        <span style="font-size: 16px; color: #bb8760;">-15%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 15px; height: 15px; background: #5bb700;"></span>
+                            <span style="font-size: 12px; color: #a4a4a4;">Ready to ship</span>
+                        </div>
+                        <button style="width: 40px; height: 40px; background: #fff; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-item" style="background: #fff;">
+                <div class="product-item-photo" style="position: relative; height: 340px;">
+                    <img src="{{media url='wysiwyg/products/product-2.jpg'}}" alt="Product" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; top: 20px; left: 20px;">
+                        <span style="background: #ff6d00; color: #fff; padding: 6px 10px; font-size: 14px; font-weight: 700;">15% off</span>
+                    </div>
+                    <button style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; background: #fff; border: none; border-radius: 50%; cursor: pointer;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-item-details" style="padding: 20px;">
+                    <p style="font-size: 12px; font-weight: 300; color: #000; margin: 0 0 8px;">HAY</p>
+                    <h3 style="font-size: 16px; font-weight: 400; margin: 0 0 16px; line-height: 1.4;">
+                        <a href="#" style="color: #000; text-decoration: none;">Italian Soda Siphon 1 L</a>
+                    </h3>
+                    <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px;">
+                        <span style="font-size: 20px; font-weight: 500;">$24.60</span>
+                        <span style="font-size: 20px; color: #a4a4a4; text-decoration: line-through;">$29.00</span>
+                        <span style="font-size: 16px; color: #bb8760;">-15%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 15px; height: 15px; background: #ffe100;"></span>
+                            <span style="font-size: 12px; color: #a4a4a4;">In stock soon</span>
+                        </div>
+                        <button style="width: 40px; height: 40px; background: #fff; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-item" style="background: #fff;">
+                <div class="product-item-photo" style="position: relative; height: 340px;">
+                    <img src="{{media url='wysiwyg/products/product-3.jpg'}}" alt="Product" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; top: 20px; left: 20px; display: flex; flex-direction: column; gap: 8px;">
+                        <span style="background: #6aabdd; color: #fff; padding: 6px 10px; font-size: 14px; font-weight: 700;">Summer offer</span>
+                        <span style="background: #ff6d00; color: #fff; padding: 6px 10px; font-size: 14px; font-weight: 700;">20% off</span>
+                    </div>
+                    <button style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; background: #fff; border: none; border-radius: 50%; cursor: pointer;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-item-details" style="padding: 20px;">
+                    <p style="font-size: 12px; font-weight: 300; color: #000; margin: 0 0 8px;">iittala</p>
+                    <h3 style="font-size: 16px; font-weight: 400; margin: 0 0 16px; line-height: 1.4;">
+                        <a href="#" style="color: #000; text-decoration: none;">Kastehelmi tealight candleholder 64 mm, linen</a>
+                    </h3>
+                    <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px;">
+                        <span style="font-size: 20px; font-weight: 500;">$20.00</span>
+                        <span style="font-size: 20px; color: #a4a4a4; text-decoration: line-through;">$25.00</span>
+                        <span style="font-size: 16px; color: #bb8760;">-20%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 15px; height: 15px; background: #5bb700;"></span>
+                            <span style="font-size: 12px; color: #a4a4a4;">Ready to ship</span>
+                        </div>
+                        <button style="width: 40px; height: 40px; background: #fff; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-item" style="background: #fff;">
+                <div class="product-item-photo" style="position: relative; height: 340px;">
+                    <img src="{{media url='wysiwyg/products/product-4.jpg'}}" alt="Product" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; top: 20px; left: 20px;">
+                        <span style="background: #bb8760; color: #fff; padding: 6px 10px; font-size: 14px; font-weight: 700;">Exclusive</span>
+                    </div>
+                    <button style="position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; background: #fff; border: none; border-radius: 50%; cursor: pointer;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="product-item-details" style="padding: 20px;">
+                    <p style="font-size: 12px; font-weight: 300; color: #000; margin: 0 0 8px;">iittala</p>
+                    <h3 style="font-size: 16px; font-weight: 400; margin: 0 0 16px; line-height: 1.4;">
+                        <a href="#" style="color: #000; text-decoration: none;">Birds by Toikka Butler 160 x 260 mm, Seville orange</a>
+                    </h3>
+                    <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px;">
+                        <span style="font-size: 20px; font-weight: 500;">$706</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 15px; height: 15px; background: #5bb700;"></span>
+                            <span style="font-size: 12px; color: #a4a4a4;">Ready to ship</span>
+                        </div>
+                        <button style="width: 40px; height: 40px; background: #fff; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"/>
+                                <circle cx="20" cy="21" r="1"/>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

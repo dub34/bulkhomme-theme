@@ -1,0 +1,41 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Customer Account Link Template
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Customer\Block\Account\Link
+ */
+?>
+
+<?php
+/** @var \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer */
+$currentCustomer = $block->getData('current_customer');
+?>
+
+<div class="customer-account-link">
+    <?php if ($currentCustomer->getCustomerId()): ?>
+        <a href="<?php echo $block->escapeUrl($block->getUrl('customer/account')); ?>"
+           class="action account"
+           title="<?php echo $block->escapeHtmlAttr(__('My Account')); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span><?php echo $block->escapeHtml($currentCustomer->getCustomer()->getFirstname()); ?></span>
+        </a>
+    <?php else: ?>
+        <a href="<?php echo $block->escapeUrl($block->getUrl('customer/account/login')); ?>"
+           class="action login"
+           title="<?php echo $block->escapeHtmlAttr(__('Sign In')); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span><?php echo __('Sign In'); ?></span>
+        </a>
+    <?php endif; ?>
+</div>

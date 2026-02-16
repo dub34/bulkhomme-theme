@@ -1,0 +1,77 @@
+<!--
+/**
+ * ForHomeAndMore - About Section with Statistics
+ * CMS Block for Homepage - Insert via Content > Blocks
+ * Block Identifier: fhm-about-section
+ */
+-->
+
+<section class="about-section" style="background-color: #f7f7f7; padding: 130px 0 80px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 340px 1fr 1fr; gap: 80px; margin-bottom: 80px;">
+            <!-- About Text Column -->
+            <div>
+                <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 80px;">About</h2>
+                <div style="font-size: 16px; line-height: 1.6; color: #000;">
+                    <p style="margin-bottom: 24px;">
+                        At ForHomeAndMore, we believe your home should be a reflection of your personality — warm, stylish, and uniquely yours. Our online store offers a thoughtfully curated selection of homeware, decor, tableware, and interior accents designed to elevate everyday living.
+                    </p>
+                    <p>
+                        Whether you're refreshing a room, setting the perfect table, or searching for that special decorative piece, we make it easy to create a space you love. With quality, beauty, and comfort at the heart of everything we do, we're here to help you turn your house into a home.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Decorative SVG/Image Column -->
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <img src="{{media url='wysiwyg/about/logo-graphic.svg'}}" alt="ForHomeAndMore" style="max-width: 100%; height: auto;">
+            </div>
+
+            <!-- Featured Image Column -->
+            <div>
+                <img src="{{media url='wysiwyg/about/about-image.jpg'}}" alt="About ForHomeAndMore" style="width: 100%; height: auto; object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Blue CTA Banner -->
+        <div style="background-color: #6aabdd; padding: 50px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 80px;">
+            <p style="font-size: 16px; font-weight: 700; color: #fff; max-width: 310px; line-height: 1.6; margin: 0;">
+                The full range of services and products that are presented in our store
+            </p>
+            <a href="{{store url='catalog'}}" style="display: inline-block;">
+                <svg width="45" height="45" viewBox="0 0 45 45" fill="none">
+                    <circle cx="22.5" cy="22.5" r="22.5" fill="white"/>
+                    <path d="M18 15L27 22.5L18 30" stroke="#6aabdd" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Statistics Section -->
+        <div style="display: grid; grid-template-columns: 280px 1fr 1fr 1fr; gap: 40px; align-items: start;">
+            <!-- Left Text -->
+            <div>
+                <h3 style="font-size: 36px; font-weight: 700; line-height: 1.2; margin: 0;">
+                    Quality<br>products.<br><br>Guaranteed!
+                </h3>
+            </div>
+
+            <!-- Stat 1 -->
+            <div style="border-left: 5px solid #6aabdd; padding-left: 40px;">
+                <p style="font-size: 80px; font-weight: 700; color: #000; margin: 0 0 20px;">1 450</p>
+                <p style="font-size: 24px; color: #646464; line-height: 1.2; margin: 0;">new products monthly</p>
+            </div>
+
+            <!-- Stat 2 -->
+            <div style="border-left: 5px solid #6aabdd; padding-left: 40px;">
+                <p style="font-size: 80px; font-weight: 700; color: #000; margin: 0 0 20px;">128</p>
+                <p style="font-size: 24px; color: #646464; line-height: 1.2; margin: 0;">professional designers</p>
+            </div>
+
+            <!-- Stat 3 -->
+            <div style="border-left: 5px solid #6aabdd; padding-left: 40px;">
+                <p style="font-size: 80px; font-weight: 700; color: #000; margin: 0 0 20px;">71 513</p>
+                <p style="font-size: 24px; color: #646464; line-height: 1.2; margin: 0;">products are already delighting our customers</p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,65 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Top Bar Template
+ *
+ * Black top bar with country selector, language, and service links
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+
+/** @var \Magento\Store\Model\StoreManagerInterface $storeManager */
+$storeManager = $block->getData('storeManager') ?: \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Store\Model\StoreManagerInterface::class);
+$currentStore = $storeManager->getStore();
+?>
+
+<div class="top-bar">
+    <div class="top-bar-content">
+        <div class="top-bar-left">
+            <!-- Country & Currency Selector -->
+            <div class="top-bar-selector country-currency">
+                <svg class="flag-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <span><?= $block->escapeHtml(__('Italy | EUR')) ?></span>
+            </div>
+
+            <!-- Language Selector -->
+            <div class="top-bar-selector language">
+                <select id="language-selector" class="language-select">
+                    <option value="en" selected><?= $block->escapeHtml(__('English')) ?></option>
+                    <option value="it"><?= $block->escapeHtml(__('Italiano')) ?></option>
+                    <option value="de"><?= $block->escapeHtml(__('Deutsch')) ?></option>
+                    <option value="fr"><?= $block->escapeHtml(__('Français')) ?></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="top-bar-right">
+            <a href="<?= $block->escapeUrl($block->getUrl('trade-program')) ?>" class="top-bar-link">
+                <?= $block->escapeHtml(__('Trade programm')) ?>
+            </a>
+            <a href="<?= $block->escapeUrl($block->getUrl('customer-service')) ?>" class="top-bar-link">
+                <?= $block->escapeHtml(__('Customer service')) ?>
+            </a>
+            <a href="<?= $block->escapeUrl($block->getUrl('delivery')) ?>" class="top-bar-link">
+                <?= $block->escapeHtml(__('Delivery')) ?>
+            </a>
+            <a href="<?= $block->escapeUrl($block->getUrl('club')) ?>" class="top-bar-link">
+                <?= $block->escapeHtml(__('Club')) ?>
+            </a>
+            <a href="<?= $block->escapeUrl($block->getUrl('vacancies')) ?>" class="top-bar-link">
+                <?= $block->escapeHtml(__('Vacancies')) ?>
+            </a>
+            <a href="<?= $block->escapeUrl($block->getUrl('about')) ?>" class="top-bar-link">
+                <?= $block->escapeHtml(__('About')) ?>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+{
+    "name": "forhomeandmore/theme-default",
+    "description": "ForHomeAndMore default theme",
+    "type": "magento2-theme",
+    "version": "1.0.0",
+    "require": {
+        "magento/framework": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"]
+    }
+}

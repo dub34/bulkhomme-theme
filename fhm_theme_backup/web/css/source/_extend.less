@@ -1,0 +1,399 @@
+// Custom Header Styles
+// Extends Magento Luma theme with custom black header
+
+& when (@media-common = true) {
+    
+    // Показываем мобильное меню на всех устройствах
+    .nav-sections {
+        display: block;
+    }
+    
+    .nav-toggle {
+        display: block !important;
+        
+        &:before {
+            content: '\e61f';
+            font-family: 'luma-icons';
+            font-size: 24px;
+        }
+        
+        span {
+            .lib-visually-hidden();
+        }
+    }
+    
+    // Кастомный черный хедер
+    .page-header {
+        background: #000;
+        border-bottom: none;
+        
+        .header.content {
+            padding: 0;
+        }
+    }
+    
+    .custom-header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        max-width: 1440px;
+        margin: 0 auto;
+        
+        // Бургер меню
+        .nav-toggle {
+            color: #fff;
+            margin-right: 20px;
+            order: 1;
+            position: relative;
+            z-index: 10;
+            
+            &:hover {
+                opacity: 0.8;
+                text-decoration: none;
+            }
+        }
+        
+        // Поиск
+        .header-search-wrapper {
+            margin-right: 20px;
+            order: 2;
+            
+            .block-search {
+                margin: 0;
+                
+                .label {
+                    .lib-visually-hidden();
+                }
+                
+                .control {
+                    background: transparent;
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 4px;
+                    padding: 0;
+                    
+                    input {
+                        color: #fff;
+                        background: transparent;
+                        border: none;
+                        padding: 8px 12px;
+                        
+                        &::placeholder {
+                            color: rgba(255, 255, 255, 0.6);
+                        }
+                    }
+                }
+                
+                .action.search {
+                    color: #fff;
+                    background: transparent;
+                    border: none;
+                    right: 5px;
+                    
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                    
+                    &:before {
+                        content: '\e615';
+                        font-family: 'luma-icons';
+                    }
+                    
+                    span {
+                        .lib-visually-hidden();
+                    }
+                }
+            }
+        }
+        
+        // Лого из админки
+        .logo {
+            margin-right: auto;
+            order: 3;
+            
+            img {
+                max-height: 50px;
+                width: auto;
+            }
+        }
+        
+        // Правые иконки
+        .header-right-icons {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            order: 4;
+            
+            > * {
+                a, button, .action {
+                    color: #fff;
+                    text-decoration: none;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    padding: 0;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                    
+                    // Прячем текст, оставляем иконки
+                    span:not(.counter) {
+                        .lib-visually-hidden();
+                    }
+                    
+                    &:before {
+                        font-family: 'luma-icons';
+                        font-size: 24px;
+                    }
+                }
+            }
+            
+            // Wishlist иконка
+            .wishlist-link a:before {
+                content: '\e600';
+            }
+            
+            // Store Locator иконка (map marker)
+            .store-locator-link {
+                color: #fff;
+                
+                &:before {
+                    content: '\e609';
+                }
+                
+                span {
+                    .lib-visually-hidden();
+                }
+            }
+            
+            // Customer иконка
+            .customer-welcome,
+            .customer-name,
+            .authorization-link {
+                a:before {
+                    content: '\e612';
+                }
+            }
+            
+            // Minicart
+            .minicart-wrapper {
+                .action.showcart {
+                    position: relative;
+                    
+                    &:before {
+                        content: '\e60a';
+                    }
+                    
+                    .counter.qty {
+                        background: #fff;
+                        color: #000;
+                        border-radius: 50%;
+                        min-width: 18px;
+                        height: 18px;
+                        line-height: 18px;
+                        font-size: 11px;
+                        position: absolute;
+                        top: -8px;
+                        right: -8px;
+                        padding: 0 4px;
+                        font-weight: 600;
+                        
+                        .loader {
+                            display: none;
+                        }
+                    }
+                    
+                    .counter-label {
+                        .lib-visually-hidden();
+                    }
+                }
+                
+                // Стили для выпадающей корзины
+                .block-minicart {
+                    .lib-dropdown();
+                    background: #fff;
+                    right: 0;
+                    left: auto;
+                    width: 320px;
+                    
+                    &:before,
+                    &:after {
+                        right: 10px;
+                        left: auto;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Navigation - мобильный стиль на всех устройствах
+    .nav-sections {
+        background: #fff;
+        
+        &:not(.active) {
+            .navigation {
+                display: none;
+            }
+        }
+        
+        .navigation {
+            background: #fff;
+            padding: 20px 0;
+            
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .level0 {
+                border-bottom: 1px solid #e0e0e0;
+                
+                > a {
+                    display: block;
+                    padding: 15px 30px;
+                    color: #333;
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                    
+                    &:hover {
+                        color: #000;
+                        background: #f5f5f5;
+                    }
+                }
+                
+                &.active > a,
+                &.has-active > a {
+                    color: #000;
+                    font-weight: 600;
+                }
+            }
+            
+            .submenu {
+                padding-left: 20px;
+                background: #fafafa;
+                
+                .level1 {
+                    border-bottom: 1px solid #e0e0e0;
+                    
+                    a {
+                        padding: 12px 30px;
+                        display: block;
+                        color: #666;
+                        text-decoration: none;
+                        transition: all 0.3s ease;
+                        
+                        &:hover {
+                            color: #000;
+                            padding-left: 35px;
+                        }
+                    }
+                    
+                    &.active > a {
+                        color: #000;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Tablet
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .custom-header-container {
+        padding: 15px 20px;
+        
+        .logo img {
+            max-height: 40px;
+        }
+        
+        .header-search-wrapper {
+            .block-search .control {
+                max-width: 150px;
+                
+                input {
+                    font-size: 14px;
+                    padding: 6px 10px;
+                }
+            }
+        }
+        
+        .header-right-icons {
+            gap: 20px;
+            
+            > * a:before,
+            > * button:before {
+                font-size: 22px;
+            }
+        }
+    }
+}
+
+// Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .custom-header-container {
+        padding: 10px 15px;
+        
+        .nav-toggle {
+            margin-right: 15px;
+            
+            &:before {
+                font-size: 20px;
+            }
+        }
+        
+        .logo img {
+            max-height: 35px;
+        }
+        
+        .header-search-wrapper {
+            margin-right: 10px;
+            
+            .block-search .control {
+                max-width: 100px;
+                
+                input {
+                    font-size: 13px;
+                    padding: 5px 8px;
+                }
+            }
+        }
+        
+        .header-right-icons {
+            gap: 15px;
+            
+            > * a:before,
+            > * button:before {
+                font-size: 20px;
+            }
+            
+            .minicart-wrapper .action.showcart .counter.qty {
+                min-width: 16px;
+                height: 16px;
+                line-height: 16px;
+                font-size: 10px;
+                top: -6px;
+                right: -6px;
+            }
+        }
+    }
+    
+    .nav-sections .navigation {
+        padding: 15px 0;
+        
+        .level0 > a {
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+        
+        .submenu .level1 a {
+            padding: 10px 20px;
+            font-size: 13px;
+        }
+    }
+}

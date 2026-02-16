@@ -1,0 +1,129 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Main Header Template
+ *
+ * Main header with logo, catalog button, search, and action icons
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+?>
+
+<div class="page-header-main">
+    <div class="header-content-wrapper">
+        <!-- Mobile Menu Toggle -->
+        <button type="button"
+                class="mobile-menu-toggle"
+                id="mobile-menu-toggle"
+                aria-label="<?= $block->escapeHtmlAttr(__('Toggle navigation')) ?>">
+            <span class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </span>
+        </button>
+
+        <!-- Logo Container -->
+        <div class="header-logo-container">
+            <?= $block->getChildHtml('logo') ?>
+        </div>
+
+        <!-- Catalog Button (Desktop Only) -->
+        <button type="button"
+                class="catalog-button"
+                id="catalog-toggle"
+                aria-label="<?= $block->escapeHtmlAttr(__('Open Catalog')) ?>">
+            <svg class="hamburger-icon-svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <line x1="2" y1="5" x2="18" y2="5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="2" y1="10" x2="18" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="2" y1="15" x2="18" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span><?= $block->escapeHtml(__('Catalog')) ?></span>
+        </button>
+
+        <!-- Search Container -->
+        <div class="header-search-container">
+            <div class="search-form-wrapper">
+                <!-- Category Dropdown -->
+                <select class="search-category-select" id="search-category" aria-label="<?= $block->escapeHtmlAttr(__('Search Category')) ?>">
+                    <option value=""><?= $block->escapeHtml(__('All Categories')) ?></option>
+                    <option value="living"><?= $block->escapeHtml(__('Living')) ?></option>
+                    <option value="dining"><?= $block->escapeHtml(__('Dining')) ?></option>
+                    <option value="bedroom"><?= $block->escapeHtml(__('Bedroom')) ?></option>
+                    <option value="outdoor"><?= $block->escapeHtml(__('Outdoor')) ?></option>
+                    <option value="lighting"><?= $block->escapeHtml(__('Lighting')) ?></option>
+                    <option value="accessories"><?= $block->escapeHtml(__('Accessories')) ?></option>
+                </select>
+
+                <!-- Search Input & Button -->
+                <div class="search-input-wrapper">
+                    <?= $block->getChildHtml('search') ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Icons Container -->
+        <div class="header-actions-container">
+            <!-- Profile/Account Icon -->
+            <div class="action-icon-wrapper">
+                <?= $block->getChildHtml('customer') ?>
+            </div>
+
+            <!-- Wishlist Icon with Badge -->
+            <div class="action-icon-wrapper wishlist-wrapper">
+                <?= $block->getChildHtml('wishlist') ?>
+            </div>
+
+            <!-- Compare Icon with Badge -->
+            <div class="action-icon-wrapper compare-wrapper">
+                <?= $block->getChildHtml('compare') ?>
+            </div>
+
+            <!-- Mini Cart Icon with Badge -->
+            <div class="action-icon-wrapper minicart-wrapper">
+                <?= $block->getChildHtml('minicart') ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Overlay (for closing mobile menu) -->
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+<script>
+require([
+    'jquery',
+    'domReady!'
+], function ($) {
+    'use strict';
+
+    // Mobile menu toggle
+    $('#mobile-menu-toggle, #mobile-menu-overlay').on('click', function() {
+        $('body').toggleClass('mobile-menu-open');
+    });
+
+    // Catalog button functionality
+    $('#catalog-toggle').on('click', function() {
+        // Toggle catalog/navigation visibility
+        $('.navigation-menu').toggleClass('catalog-open');
+    });
+
+    // Close mobile menu when clicking outside
+    $(document).on('click', function(e) {
+        if (!$(e.target).closest('.mobile-menu-toggle, .navigation-menu').length) {
+            $('body').removeClass('mobile-menu-open');
+        }
+    });
+
+    // Close mobile menu on ESC key
+    $(document).on('keydown', function(e) {
+        if (e.key === 'Escape' && $('body').hasClass('mobile-menu-open')) {
+            $('body').removeClass('mobile-menu-open');
+        }
+    });
+});
+</script>

@@ -1,0 +1,42 @@
+<!--
+/**
+ * ForHomeAndMore - Full Homepage Content
+ * Complete homepage layout combining all content blocks
+ *
+ * Use this as the content for CMS Homepage (Admin > Content > Pages > Home Page)
+ * OR insert individual blocks via widgets
+ */
+-->
+
+<!-- Hero Category Slider -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-homepage-hero-slider"}}
+
+<!-- Fresh Finds Product Section -->
+{{widget type="Magento\CatalogWidget\Block\Product\ProductsList" title="Fresh finds for the summer and beyond" products_count="4" template="Magento_CatalogWidget::product/widget/content/grid.phtml" conditions_encoded="^[`1`:^[`type`:`Magento||CatalogWidget||Model||Rule||Condition||Combine`,`aggregator`:`all`,`value`:`1`,`new_child`:``^]^]"}}
+
+<!-- Outdoor Living Banner -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-outdoor-banner"}}
+
+<!-- Cookware Promo Split Banner -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-cookware-promo"}}
+
+<!-- Discover the Brands -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-brands-section"}}
+
+<!-- About Section with Statistics -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-about-section"}}
+
+<!-- Trending Articles -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-trending-articles"}}
+
+<!-- Newsletter & Instagram Row -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-newsletter"}}
+
+<!-- Customer Reviews -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-reviews"}}
+
+<!-- Instagram Feed -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-instagram-feed"}}
+
+<!-- This is ForHomeAndMore -->
+{{block class="Magento\Cms\Block\Block" block_id="fhm-company-about"}}

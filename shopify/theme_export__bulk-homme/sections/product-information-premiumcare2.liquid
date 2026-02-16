@@ -1,0 +1,399 @@
+{% comment %}
+  Product Page - PremiumCare Layout v2
+  Split layout: 68% left + 12% empty + 20% right
+  Gallery overlays empty space with absolute positioning
+{% endcomment %}
+
+<script type="application/ld+json">
+  {{ closest.product | structured_data }}
+</script>
+
+{% capture media_gallery %}
+  {%- content_for 'block',
+          type: '_product-media-gallery',
+          id: 'media-gallery',
+          closest.product: closest.product
+  -%}
+{% endcapture %}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign product_collections = product.collections -%}
+{%- assign main_collection = product_collections | first -%}
+
+<div class="premiumcare2-wrapper color-{{ section.settings.color_scheme }}">
+  <div class="premiumcare2-container">
+
+    {%- comment -%} LEFT BLOCK - 58% width {%- endcomment -%}
+    <div class="premiumcare2-left">
+      <div class="premiumcare2-left-content">
+        {%- comment -%} Breadcrumbs {%- endcomment -%}
+        {% if section.settings.show_breadcrumbs %}
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+              <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                  <span itemprop="name">{{ shop.name }}</span>
+                </a>
+                <meta itemprop="position" content="1">
+              </li>
+              {% if main_collection %}
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                  <a itemprop="item" href="{{ main_collection.url }}">
+                    <span itemprop="name">{{ main_collection.title }}</span>
+                  </a>
+                  <meta itemprop="position" content="2">
+                </li>
+              {% endif %}
+              <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">{{ product.title }}</span>
+                <meta itemprop="position" content="3">
+              </li>
+            </ul>
+          </nav>
+        {% endif %}
+
+        {%- comment -%} Product Title {%- endcomment -%}
+        <h1 class="product-title">{{ product.title }}</h1>
+
+        {%- comment -%} Price {%- endcomment -%}
+        <div class="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          {% render 'price', product_resource: product, show_sale_price_first: true %}
+          <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.0 }}">
+          <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+          <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+        </div>
+
+        {%- comment -%} Product Description {%- endcomment -%}
+        {% if product.description != blank %}
+          <div class="product-description rte">
+            {{ product.description }}
+          </div>
+        {% endif %}
+
+        {%- comment -%} Variant Picker {%- endcomment -%}
+        {% unless product.has_only_default_variant %}
+          <div class="variant-picker-wrapper">
+            {% render 'variant-main-picker', product_resource: product %}
+          </div>
+        {% endunless %}
+
+        {%- comment -%} Buy Buttons {%- endcomment -%}
+        {{ bu }}
+
+      </div>
+    </div>
+
+    {%- comment -%} GALLERY - Absolute positioned (38% width, right: 16%) {%- endcomment -%}
+    {% comment %}<div class="premiumcare2-gallery">{% endcomment %}
+      {% comment %}<div class="gallery-inner">{% endcomment %}
+        {% comment %}{{ media_gallery }}{% endcomment %}
+      {% comment %}</div>{% endcomment %}
+    {% comment %}</div>{% endcomment %}
+
+    {%- comment -%} RIGHT BLOCK - 16% width {%- endcomment -%}
+    <div class="premiumcare2-right">
+      <div class="premiumcare2-right-content">
+
+        {%- comment -%} Product Attributes {%- endcomment -%}
+        {% if section.settings.show_attributes %}
+          <div class="product-attributes">
+            <h3 class="attributes-title">{{ section.settings.attributes_title | default: 'Product Details' }}</h3>
+            <ul class="attributes-list">
+              {% for block in section.blocks %}
+                {% if block.type == 'attribute' %}
+                  {% assign metafield_value = product.metafields[block.settings.namespace][block.settings.key] %}
+                  {% if metafield_value != blank %}
+                    <li>
+                      <strong>{{ block.settings.label }}:</strong>
+                      <span>{{ metafield_value }}</span>
+                    </li>
+                  {% elsif block.settings.default_value != blank %}
+                    <li>
+                      <strong>{{ block.settings.label }}:</strong>
+                      <span>{{ block.settings.default_value }}</span>
+                    </li>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {%- comment -%} Additional Info {%- endcomment -%}
+        {% if product.vendor != blank and section.settings.show_vendor %}
+          <div class="product-vendor">
+            <p>
+              <strong>Brand:</strong>
+              <span itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                <span itemprop="name">{{ product.vendor }}</span>
+              </span>
+            </p>
+          </div>
+        {% endif %}
+
+        {% if current_variant.sku != blank and section.settings.show_sku %}
+          <div class="product-sku">
+            <p><strong>SKU:</strong> <span itemprop="sku">{{ current_variant.sku }}</span></p>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .premiumcare2-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .premiumcare2-container {
+    display: inline-block;
+    width: 100%;
+    padding: 0px;
+    position: relative;
+    min-height: 555px;
+  }
+
+  /* LEFT BLOCK - 58% width (matching PremiumCare exactly) */
+  .premiumcare2-left {
+    float: left;
+    background: #f5ead6;
+    padding: 25px 15% 50px 13%;
+    width: 58%;
+    box-sizing: border-box;
+    min-height: 555px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .premiumcare2-left-content {
+    display: inline-block;
+    min-height: 410px;
+  }
+
+  /* RIGHT BLOCK - 16% width (matching PremiumCare exactly) */
+  .premiumcare2-right {
+    float: right;
+    background: #f5ead6;
+    padding: 45px 2% 50px 2%;
+    width: 16%;
+    box-sizing: border-box;
+    min-height: 555px;
+    z-index: 1;
+    position: relative;
+  }
+
+  .premiumcare2-right-content {
+    width: 100%;
+  }
+
+  /* GALLERY - Absolute positioned (38% width, right: 16% - matching PremiumCare exactly) */
+  .premiumcare2-gallery {
+    width: 38%;
+    height: 100%;
+    max-height: 475px;
+    display: flex;
+    position: absolute;
+    top: 50px;
+    right: 16%;
+    z-index: 1;
+  }
+
+  .gallery-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* LEFT CONTENT STYLES */
+  .breadcrumbs {
+    margin-bottom: 20px;
+  }
+
+  .breadcrumbs ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-foreground-secondary, #666);
+  }
+
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 8px;
+  }
+
+  .breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+  .product-title {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    line-height: 1.2;
+  }
+
+  .product-price {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+
+  .product-description {
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: var(--color-foreground-secondary, #666);
+  }
+
+  .variant-picker-wrapper {
+    margin-bottom: 30px;
+  }
+
+  .buy-buttons-wrapper {
+    margin-top: 40px;
+  }
+
+  .accelerated-checkout-wrapper {
+    margin-top: 10px;
+  }
+
+  /* RIGHT CONTENT STYLES */
+  .product-attributes {
+    margin-bottom: 30px;
+  }
+
+  .attributes-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .attributes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .attributes-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+    font-size: 14px;
+  }
+
+  .attributes-list li:last-child {
+    border-bottom: none;
+  }
+
+  .attributes-list strong {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .attributes-list span {
+    color: var(--color-foreground-secondary, #666);
+  }
+
+  .product-vendor,
+  .product-sku {
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+
+  .product-vendor p,
+  .product-sku p {
+    margin: 0;
+  }
+
+  .product-vendor strong,
+  .product-sku strong {
+    font-weight: 600;
+    margin-right: 8px;
+  }
+
+  /* RESPONSIVE - TABLET */
+  @media screen and (max-width: 1024px) {
+    .premiumcare2-container {
+      flex-direction: column;
+    }
+
+    .premiumcare2-left,
+    .premiumcare2-empty,
+    .premiumcare2-right {
+      width: 100%;
+    }
+
+    .premiumcare2-left-content {
+      {% comment %}padding: 30px 40px;{% endcomment %}
+    }
+
+    .premiumcare2-right-content {
+      padding: 30px 40px;
+    }
+
+    .premiumcare2-empty {
+      display: none;
+    }
+
+    .premiumcare2-gallery {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    .product-title {
+      font-size: 28px;
+    }
+
+    .product-price {
+      font-size: 24px;
+    }
+  }
+
+  /* RESPONSIVE - MOBILE */
+  @media screen and (max-width: 640px) {
+    .premiumcare2-left-content,
+    .premiumcare2-right-content {
+      {% comment %}padding: 20px;{% endcomment %}
+    }
+
+    .product-title {
+      font-size: 24px;
+    }
+
+    .product-price {
+      font-size: 20px;
+    }
+
+    .gallery-inner {
+      aspect-ratio: 1;
+    }
+
+    .breadcrumbs {
+      font-size: 12px;
+    }
+  }
+{% endstylesheet %}

@@ -1,0 +1,34 @@
+<?php
+/**
+ * BULK HOMME Custom Header Template
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+?>
+<div class="header content">
+    <div class="header-wrapper">
+        <!-- Logo -->
+        <div class="logo-container">
+            <?= $block->getChildHtml('logo') ?>
+        </div>
+
+        <!-- Search (standard search widget) -->
+        <div class="search-container">
+            <?= $block->getChildHtml('search') ?>
+        </div>
+
+        <!-- Icons -->
+        <div class="header-icons">
+            <!-- Wishlist (icon only) -->
+            <?= $block->getChildHtml('wishlist') ?>
+
+            <!-- Account -->
+            <a href="<?= $block->escapeUrl($block->getUrl('customer/account')) ?>" class="action toaccount" title="<?= $block->escapeHtmlAttr(__('Account')) ?>">
+                <span class="icon icon-user"></span>
+            </a>
+
+            <!-- Cart (standard minicart widget) -->
+            <?= $block->getChildHtml('minicart') ?>
+        </div>
+    </div>
+</div>

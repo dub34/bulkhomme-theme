@@ -1,0 +1,246 @@
+// FHM Theme - Header Styles
+// Uses only base Magento blank theme variables
+
+// Header Container
+.header.content {
+    .header-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 16px 20px;
+        background: @color-white;
+
+        // Logo
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+
+            .logo {
+                max-width: inherit;
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        // Search
+        .search-container {
+            flex: 1;
+            max-width: 800px;
+            margin: 0 auto;
+
+            .block-search {
+                margin: 0;
+                width: 100%;
+
+                .field.search {
+                    margin: 0;
+
+                    .control {
+                        position: relative;
+                        display: flex;
+                        padding: 0;
+
+                        .input-text {
+                            width: 100%;
+                            padding: 10px 16px;
+                            padding-right: 50px;
+                            border: 1px solid @border-color__base;
+                            border-radius: 4px;
+                            font-size: @font-size__base;
+
+                            &:focus {
+                                border-color: @color-blue1;
+                                outline: none;
+                                box-shadow: 0 0 0 3px fade(@color-blue1, 10%);
+                            }
+                        }
+
+                        .action.search {
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            height: 100%;
+                            width: 44px;
+                            padding: 0;
+                            background: @color-blue1;
+                            border: none;
+                            border-radius: 0 4px 4px 0;
+                            color: @color-white;
+                            cursor: pointer;
+                            transition: background 0.2s;
+
+                            &:hover {
+                                background: @color-blue2;
+                            }
+
+                            span {
+                                // Visually hidden
+                                position: absolute;
+                                width: 1px;
+                                height: 1px;
+                                padding: 0;
+                                margin: -1px;
+                                overflow: hidden;
+                                clip: rect(0, 0, 0, 0);
+                                border: 0;
+                            }
+
+                            // Search icon as SVG background
+                            &::before {
+                                content: '';
+                                display: block;
+                                width: 18px;
+                                height: 18px;
+                                margin: 0 auto;
+                                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Header Icons
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+
+            // Wishlist link - icon only
+            .link.wishlist {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px;
+                border-radius: 4px;
+                transition: background 0.2s;
+
+                &:hover {
+                    background: @color-gray-light0;
+                }
+
+                a {
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                    text-decoration: none;
+                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23757575' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3C/svg%3E");
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+
+                    // Hide text
+                    font-size: 0;
+                    color: transparent;
+
+                    .counter {
+                        position: absolute;
+                        top: -4px;
+                        right: -4px;
+                        min-width: 20px;
+                        height: 20px;
+                        padding: 0 6px;
+                        background: @color-orange-red1;
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 11px;
+                        color: @color-white;
+                        font-weight: @font-weight__bold;
+                        line-height: 1;
+                    }
+                }
+            }
+
+            .action {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px;
+                border-radius: 4px;
+                transition: background 0.2s;
+                text-decoration: none;
+
+                &:hover {
+                    background: @color-gray-light0;
+                }
+
+                .icon {
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+
+                    // Heart icon
+                    &.icon-heart {
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23757575' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'/%3E%3C/svg%3E");
+                    }
+
+                    // User icon
+                    &.icon-user {
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23757575' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'/%3E%3C/svg%3E");
+                    }
+
+                    // Cart icon
+                    &.icon-cart {
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23757575' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'/%3E%3C/svg%3E");
+                    }
+                }
+
+                .counter {
+                    position: absolute;
+                    top: -4px;
+                    right: -4px;
+                    min-width: 20px;
+                    height: 20px;
+                    padding: 0 6px;
+                    background: @color-orange-red1;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &.empty {
+                        display: none;
+                    }
+
+                    .counter-number {
+                        color: @color-white;
+                        font-size: 11px;
+                        font-weight: @font-weight__bold;
+                        line-height: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Mobile styles
+@media (max-width: @screen__m) {
+    .header.content {
+        padding: 0;
+
+        .header-wrapper {
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .search-container {
+            order: 3;
+            width: 100%;
+            max-width: 100%;
+            margin-top: 8px;
+        }
+    }
+}

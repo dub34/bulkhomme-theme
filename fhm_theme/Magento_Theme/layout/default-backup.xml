@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Убираем стандартный header panel -->
+        <referenceContainer name="header.panel" remove="true"/>
+
+        <!-- Работаем с header.content -->
+        <referenceContainer name="header.content">
+            <!-- Удаляем всё что было -->
+            <referenceBlock name="logo" remove="true"/>
+            <referenceBlock name="minicart" remove="true"/>
+
+            <!-- Создаём новую структуру -->
+            <container name="custom.header.container" htmlClass="custom-header-container" htmlTag="div" before="-">
+                <!-- Бургер меню -->
+                <block class="Magento\Theme\Block\Html\Header" name="custom.mobile.toggle" before="-">
+                    <arguments>
+                        <argument name="show_mobile" xsi:type="boolean">true</argument>
+                    </arguments>
+                </block>
+
+                <!-- Поиск -->
+                <container name="custom.search.container" htmlTag="div" htmlClass="header-search-wrapper" after="custom.mobile.toggle">
+                    <block class="Magento\Framework\View\Element\Template" name="custom.top.search" template="Magento_Search::form.mini.phtml"/>
+                </container>
+
+                <!-- Лого -->
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="custom.logo" after="custom.search.container"/>
+
+                <!-- Правые иконки -->
+                <container name="custom.header.right" htmlClass="header-right-icons" htmlTag="div" after="custom.logo">
+                    <!-- Wishlist -->
+                    <block class="Magento\Wishlist\Block\Link" name="custom.wishlist" ifconfig="wishlist/general/active">
+                        <arguments>
+                            <argument name="template" xsi:type="string">Magento_Wishlist::link.phtml</argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Store Locator -->
+                    <block class="Magento\Framework\View\Element\Html\Link" name="custom.store.locator">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Stores</argument>
+                            <argument name="path" xsi:type="string">stores</argument>
+                            <argument name="attributes" xsi:type="array">
+                                <item name="class" xsi:type="string">store-locator-link</item>
+                                <item name="title" xsi:type="string" translate="true">Find Our Stores</item>
+                            </argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Customer Account -->
+                    <block class="Magento\Customer\Block\Account\Link" name="custom.customer">
+                        <arguments>
+                            <argument name="template" xsi:type="string">Magento_Customer::account/link/authorization.phtml</argument>
+                        </arguments>
+                    </block>
+
+                    <!-- Minicart -->
+                    <block class="Magento\Checkout\Block\Cart\Sidebar" name="custom.minicart">
+                        <arguments>
+                            <argument name="jsLayout" xsi:type="array">
+                                <item name="components" xsi:type="array">
+                                    <item name="minicart_content" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_Checkout/js/view/minicart</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="template" xsi:type="string">Magento_Checkout/minicart/content</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <!-- Убираем десктопное меню -->
+        <referenceBlock name="catalog.topnav" remove="true"/>
+
+        <!-- Мобильное меню везде -->
+        <move element="store.menu" destination="page.wrapper" after="header.container"/>
+    </body>
+</page>

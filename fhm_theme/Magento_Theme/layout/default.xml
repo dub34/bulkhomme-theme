@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Remove default header blocks -->
+        <referenceBlock name="header.panel" remove="true"/>
+
+        <!-- Custom header wrapper -->
+        <referenceContainer name="header.container">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="fhm.header"
+                   template="Magento_Theme::html/fhm-header.phtml"/>
+        </referenceContainer>
+
+        <!-- Move existing blocks to custom header -->
+        <move element="logo" destination="fhm.header" as="logo"/>
+        <move element="top.search" destination="fhm.header" as="search"/>
+        <move element="minicart" destination="fhm.header" as="minicart"/>
+
+        <!-- Add wishlist link -->
+        <referenceBlock name="fhm.header">
+            <block class="Magento\Wishlist\Block\Link"
+                   name="fhm.wishlist"
+                   as="wishlist"
+                   template="Magento_Wishlist::link.phtml"
+                   after="search"/>
+        </referenceBlock>
+
+        <!-- Remove advanced search link -->
+        <referenceBlock name="advanced-search-link" remove="true"/>
+    </body>
+</page>

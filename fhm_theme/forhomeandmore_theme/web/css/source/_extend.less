@@ -1,0 +1,219 @@
+/**
+ * ForHomeAndMore Theme - LESS Extension Point
+ *
+ * This file integrates our CSS custom properties with Magento's LESS compilation system.
+ * It imports our modern CSS files and provides compatibility with Magento's frontend architecture.
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ */
+
+// Import CSS custom properties (design tokens)
+@import '../styles/variables.css';
+
+// Import main theme styles
+@import '../styles/theme.css';
+
+// Import module-specific styles
+@import '_module.less';
+
+/**
+ * LESS Variables for Magento Compatibility
+ * These map to our CSS custom properties but can be used in LESS files
+ * for modules that still require LESS preprocessing.
+ */
+
+// Primary Colors
+@color-primary: #2c5f2d;
+@color-primary-dark: #1e4620;
+@color-primary-light: #3d7a3e;
+
+// Text Colors
+@color-text-primary: #171717;
+@color-text-secondary: #525252;
+
+// Background Colors
+@color-bg-primary: #ffffff;
+@color-bg-secondary: #f5f5f5;
+
+// Border Colors
+@color-border-primary: #e5e5e5;
+
+//
+//  Magento UI Library Variables
+//  Required for compatibility with Magento modules
+//  _____________________________________________
+
+// Sidebar
+@sidebar__background-color: @color-bg-secondary;
+
+// Layout
+@layout-column__sidebar-width: 5;
+@layout-indent__width: 20px;
+@layout__width-xs-indent: 15px;
+
+// Navigation
+@navigation-level0-item__font-size: 14px;
+@navigation-level0-item__font-weight: 600;
+@navigation__background: @color-bg-primary;
+
+// Links
+@link__color: @color-primary;
+@link__hover__color: @color-primary-dark;
+@link__visited__color: @color-primary;
+
+// Headings
+@heading__font-weight__base: 600;
+@heading__line-height__base: 1.2;
+@heading__color__base: @color-text-primary;
+
+// Buttons
+@button__color: #fff;
+@button__background: @color-primary;
+@button__border: 1px solid @color-primary;
+@button__hover__color: #fff;
+@button__hover__background: @color-primary-dark;
+
+// Forms
+@form-element-input__background: @color-bg-primary;
+@form-element-input__border-color: @color-border-primary;
+@form-element-input__height: 44px;
+
+// Icons
+@icon-wishlist-full: '\e601';
+@icon-compare-full: '\e601';
+
+// Page
+@page__background-color: @color-bg-primary;
+@page-wrapper__width: 1280px;
+
+// Header
+@header__background-color: @color-bg-primary;
+@header-icons-color: @color-text-primary;
+@header-icons-color-hover: @color-primary;
+
+// Footer
+@footer__background-color: @color-bg-secondary;
+
+// Account Navigation
+@account-nav-background: @sidebar__background-color;
+@account-nav-color: @color-text-primary;
+@account-nav-current-border-color: @color-primary;
+
+// Minicart
+@minicart__border-color: @color-border-primary;
+@minicart__padding-horizontal: 15px;
+
+// Product
+@product-name-link__color: @color-text-primary;
+@product-name-link__color__visited: @color-text-primary;
+@product-name-link__color__hover: @color-primary;
+
+// Price
+@price__color: @color-text-primary;
+@price-color: @color-text-primary;
+
+// Typography
+@font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+@font-size-base: 1rem;
+@line-height-base: 1.5;
+
+// Spacing
+@spacing-xl: 1rem;
+@spacing-2xl: 1.5rem;
+@spacing-3xl: 2rem;
+@spacing-4xl: 2.5rem;
+
+// Breakpoints
+@screen-mobile-small: 640px;
+@screen-mobile: 768px;
+@screen-tablet: 1024px;
+@screen-desktop: 1024px;
+
+// Container
+@container-max-width: 1280px;
+
+/**
+ * Magento UI Library Overrides
+ * Override default Magento/blank styles to match our design system
+ */
+
+// Button Styles
+.lib-button() {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--border-radius-base);
+    transition: all var(--transition-base) var(--transition-ease);
+}
+
+.lib-button-primary() {
+    .lib-button();
+    color: var(--color-text-inverse);
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+
+    &:hover {
+        background-color: var(--color-primary-dark);
+        border-color: var(--color-primary-dark);
+    }
+}
+
+.lib-button-secondary() {
+    .lib-button();
+    color: var(--color-primary);
+    background-color: transparent;
+    border-color: var(--color-primary);
+
+    &:hover {
+        color: var(--color-text-inverse);
+        background-color: var(--color-primary);
+    }
+}
+
+// Form Styles
+.lib-form-element() {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    border: var(--border-width-thin) solid var(--color-border-primary);
+    border-radius: var(--border-radius-base);
+
+    &:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px rgba(44, 95, 45, 0.1);
+    }
+}
+
+/**
+ * Custom Mixins
+ */
+
+.flex-center() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transition-base() {
+    transition: all var(--transition-base) var(--transition-ease);
+}
+
+.text-truncate() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.clearfix() {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

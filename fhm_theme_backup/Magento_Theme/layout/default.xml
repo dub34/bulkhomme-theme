@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Убираем стандартный header panel -->
+        <referenceContainer name="header.panel" remove="true"/>
+        
+        <!-- Оставляем header.content, но переносим блоки -->
+        <referenceContainer name="header.content">
+            <!-- Очищаем контейнер и создаем кастомную структуру -->
+            <container name="custom.header.container" htmlClass="custom-header-container" htmlTag="div" before="-">
+                <!-- Бургер меню - стандартный Magento -->
+                <block class="Magento\Theme\Block\Html\Header" name="header.mobile.toggle" before="-">
+                    <arguments>
+                        <argument name="show_mobile" xsi:type="boolean">true</argument>
+                    </arguments>
+                </block>
+                
+                <!-- Поиск - стандартный блок -->
+                <container name="header.search.container" htmlTag="div" htmlClass="header-search-wrapper" after="header.mobile.toggle">
+                    <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml"/>
+                </container>
+                
+                <!-- Лого - стандартный блок из админки -->
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="header.logo" after="header.search.container"/>
+                
+                <!-- Правая часть -->
+                <container name="header.right" htmlClass="header-right-icons" htmlTag="div" after="header.logo">
+                    <!-- Wishlist - стандартный -->
+                    <block class="Magento\Wishlist\Block\Link" name="header.wishlist" ifconfig="wishlist/general/active"/>
+                    
+                    <!-- Store Locator - кастомная ссылка -->
+                    <block class="Magento\Framework\View\Element\Html\Link" name="header.store.locator">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Stores</argument>
+                            <argument name="path" xsi:type="string">stores</argument>
+                            <argument name="attributes" xsi:type="array">
+                                <item name="class" xsi:type="string">store-locator-link</item>
+                                <item name="title" xsi:type="string" translate="true">Find Our Stores</item>
+                            </argument>
+                        </arguments>
+                    </block>
+                    
+                    <!-- Customer Account - стандартный -->
+                    <block class="Magento\Customer\Block\Account\Link" name="header.customer"/>
+                    
+                    <!-- Minicart - стандартный -->
+                    <block class="Magento\Checkout\Block\Cart\Sidebar" name="header.minicart" template="Magento_Checkout::cart/minicart.phtml"/>
+                </container>
+            </container>
+        </referenceContainer>
+        
+        <!-- Убираем десктопное меню, оставляем только мобильное -->
+        <referenceBlock name="catalog.topnav" remove="true"/>
+        
+        <!-- Мобильное меню работает на всех устройствах -->
+        <move element="store.menu" destination="page.wrapper" after="header.container"/>
+    </body>
+</page>

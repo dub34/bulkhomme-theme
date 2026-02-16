@@ -1,0 +1,20 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Category Description Template
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+
+<?php $_description = $block->getCurrentCategory()->getDescription(); ?>
+
+<?php if ($_description): ?>
+    <div class="category-description">
+        <?php echo $block->escapeHtml($_description, ['p', 'br', 'strong', 'em', 'ul', 'ol', 'li']); ?>
+    </div>
+<?php endif; ?>

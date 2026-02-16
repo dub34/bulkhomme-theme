@@ -1,0 +1,28 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Wishlist Link Template
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Wishlist\Block\Link
+ */
+?>
+
+<?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow()): ?>
+    <a href="<?php echo $block->escapeUrl($block->getHref()); ?>"
+       class="action wishlist"
+       title="<?php echo $block->escapeHtmlAttr(__('My Wish List')); ?>"
+       data-action="wishlist">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <?php if ($block->getCounter()): ?>
+            <span class="counter qty" data-bind="text: wishlist().counter">
+                <?php echo $block->escapeHtml($block->getCounter()); ?>
+            </span>
+        <?php endif; ?>
+    </a>
+<?php endif; ?>

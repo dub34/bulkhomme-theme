@@ -1,0 +1,96 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Product List Template
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper(\Magento\Catalog\Helper\Output::class);
+?>
+
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty">
+        <div><?php echo __('We can\'t find products matching the selection.'); ?></div>
+    </div>
+<?php else: ?>
+    <div class="products-grid">
+        <?php foreach ($_productCollection as $_product): ?>
+            <div class="product-item">
+                <div class="product-item-inner">
+                    <!-- Product Image -->
+                    <div class="product-item-photo">
+                        <a href="<?php echo $block->escapeUrl($block->getProductUrl($_product)); ?>"
+                           class="product-item-photo-link"
+                           title="<?php echo $block->escapeHtmlAttr($_product->getName()); ?>">
+                            <?php echo $block->getImage($_product, 'category_page_grid')->toHtml(); ?>
+                        </a>
+
+                        <?php if ($_product->isSalable()): ?>
+                            <?php if ($_product->getSpecialPrice()): ?>
+                                <span class="product-item-label sale">
+                                    <?php echo __('Sale'); ?>
+                                </span>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="product-item-details">
+                        <!-- Product Name -->
+                        <h3 class="product-item-name">
+                            <a href="<?php echo $block->escapeUrl($block->getProductUrl($_product)); ?>"
+                               title="<?php echo $block->escapeHtmlAttr($_product->getName()); ?>">
+                                <?php echo $block->escapeHtml($_product->getName()); ?>
+                            </a>
+                        </h3>
+
+                        <!-- Product Price -->
+                        <?php echo $block->getProductPrice($_product); ?>
+
+                        <!-- Product Actions -->
+                        <div class="product-item-actions">
+                            <?php if ($_product->isSaleable()): ?>
+                                <form data-role="tocart-form"
+                                      action="<?php echo $block->escapeUrl($block->getAddToCartUrl($_product)); ?>"
+                                      method="post">
+                                    <?php echo $block->getBlockHtml('formkey'); ?>
+                                    <button type="submit"
+                                            title="<?php echo $block->escapeHtmlAttr(__('Add to Cart')); ?>"
+                                            class="action tocart primary">
+                                        <span><?php echo __('Add to Cart'); ?></span>
+                                    </button>
+                                </form>
+                            <?php else: ?>
+                                <div class="stock unavailable">
+                                    <span><?php echo __('Out of stock'); ?></span>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow()): ?>
+                                <a href="#"
+                                   class="action towishlist"
+                                   title="<?php echo $block->escapeHtmlAttr(__('Add to Wish List')); ?>"
+                                   data-post='<?php echo $block->escapeHtmlAttr(
+                                       $block->getAddToWishlistParams($_product)
+                                   ); ?>'>
+                                    <span><?php echo __('Add to Wish List'); ?></span>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <!-- Pagination -->
+    <?php echo $block->getPagerHtml(); ?>
+<?php endif; ?>

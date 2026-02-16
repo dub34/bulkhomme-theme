@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ForHomeAndMore Theme - Default Layout
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- Add custom CSS -->
+        <css src="css/styles/variables.css"/>
+        <css src="css/styles/theme.css"/>
+    </head>
+    <body>
+        <!-- Remove default header blocks we don't need -->
+        <referenceBlock name="header.panel" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+
+        <!-- Custom Header Structure -->
+        <referenceContainer name="header.container">
+            <!-- Top Bar (Black bar with country/language/links) -->
+            <block class="Magento\Framework\View\Element\Template"
+                   name="fhm.top.bar"
+                   template="Magento_Theme::html/top-bar.phtml"
+                   before="-"/>
+
+            <!-- Main Header Wrapper -->
+            <block class="Magento\Framework\View\Element\Template"
+                   name="fhm.header"
+                   template="Magento_Theme::html/header.phtml"
+                   after="fhm.top.bar"/>
+
+            <!-- Navigation Row -->
+            <block class="Magento\Framework\View\Element\Template"
+                   name="fhm.navigation"
+                   template="Magento_Theme::html/navigation.phtml"
+                   after="fhm.header"/>
+        </referenceContainer>
+
+        <!-- Move existing blocks to custom header -->
+        <move element="logo" destination="fhm.header" as="logo"/>
+        <move element="top.search" destination="fhm.header" as="search"/>
+        <move element="minicart" destination="fhm.header" as="minicart"/>
+
+        <!-- Add wishlist and customer blocks to header -->
+        <referenceBlock name="fhm.header">
+            <block class="Magento\Wishlist\Block\Link"
+                   name="fhm.wishlist"
+                   as="wishlist"
+                   template="Magento_Wishlist::link.phtml"/>
+
+            <block class="Magento\Customer\Block\Account\Link"
+                   name="fhm.customer"
+                   as="customer"
+                   template="Magento_Customer::account/link/authorization.phtml"/>
+
+            <block class="Magento\Catalog\Block\Product\Compare\Sidebar"
+                   name="fhm.compare"
+                   as="compare"
+                   template="Magento_Catalog::product/compare/sidebar.phtml"/>
+        </referenceBlock>
+
+        <!-- Custom Footer Structure -->
+        <referenceContainer name="footer-container">
+            <referenceBlock name="footer_links" remove="true"/>
+
+            <block class="Magento\Framework\View\Element\Template"
+                   name="fhm.footer"
+                   template="Magento_Theme::html/footer.phtml"
+                   before="-"/>
+        </referenceContainer>
+    </body>
+</page>

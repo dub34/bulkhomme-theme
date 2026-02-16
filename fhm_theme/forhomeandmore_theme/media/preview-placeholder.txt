@@ -1,0 +1,15 @@
+PLACEHOLDER FOR THEME PREVIEW IMAGE
+
+To add a preview image:
+1. Create a PNG image (800x800px recommended)
+2. Name it "preview.png"
+3. Place it in this directory (media/)
+
+The image will appear in:
+- Admin Panel > Content > Design > Configuration
+- Theme selection interface
+
+Recommended specifications:
+- Format: PNG
+- Size: 800x800px
+- Content: Screenshot of homepage or representative design

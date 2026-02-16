@@ -1,0 +1,46 @@
+<?php
+/**
+ * ForHomeAndMore Theme - Navigation Template
+ *
+ * Navigation row below header with main category links
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+?>
+
+<nav class="navigation-menu" role="navigation" aria-label="<?= $block->escapeHtmlAttr(__('Main navigation')) ?>">
+    <div class="navigation-content">
+        <ul class="navigation-list">
+            <li class="navigation-item">
+                <a href="<?= $block->escapeUrl($block->getUrl('new-arrivals')) ?>" class="navigation-link">
+                    <?= $block->escapeHtml(__('New arrivals')) ?>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a href="<?= $block->escapeUrl($block->getUrl('inspiration')) ?>" class="navigation-link">
+                    <?= $block->escapeHtml(__('Inspiration')) ?>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a href="<?= $block->escapeUrl($block->getUrl('brands')) ?>" class="navigation-link">
+                    <?= $block->escapeHtml(__('Brands')) ?>
+                </a>
+            </li>
+            <li class="navigation-item">
+                <a href="<?= $block->escapeUrl($block->getUrl('designers')) ?>" class="navigation-link">
+                    <?= $block->escapeHtml(__('Designers')) ?>
+                </a>
+            </li>
+            <li class="navigation-item sale">
+                <a href="<?= $block->escapeUrl($block->getUrl('sale')) ?>" class="navigation-link sale-link">
+                    <?= $block->escapeHtml(__('Sale')) ?>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

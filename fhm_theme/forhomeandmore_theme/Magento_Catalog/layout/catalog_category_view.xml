@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ForHomeAndMore Theme - Category View Layout
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <!-- Category Description -->
+            <referenceBlock name="category.description">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Magento_Catalog::category/description.phtml</argument>
+                </action>
+            </referenceBlock>
+
+            <!-- Product List -->
+            <referenceBlock name="category.products.list">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Magento_Catalog::product/list.phtml</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+
+        <!-- Sidebar -->
+        <referenceContainer name="sidebar.main">
+            <!-- Layered Navigation -->
+            <referenceBlock name="catalog.leftnav">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Magento_LayeredNavigation::layer/view.phtml</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

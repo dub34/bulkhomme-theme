@@ -1,0 +1,76 @@
+<!--
+/**
+ * ForHomeAndMore - Hero Category Slider
+ * CMS Block for Homepage - Insert via Content > Blocks
+ * Block Identifier: fhm-homepage-hero-slider
+ */
+-->
+
+<div class="category-banners">
+    <div class="category-slider" id="category-slider">
+        <!-- Banner 1: Kitchen Category -->
+        <div class="category-banner-item">
+            <img src="{{media url='wysiwyg/banners/category-kitchen.jpg'}}" alt="Kitchen">
+            <div class="category-banner-overlay">
+                <span class="category-banner-badge">Details</span>
+                <h3 class="category-banner-title">Kitchen Essentials</h3>
+            </div>
+        </div>
+
+        <!-- Banner 2: Special Offer -->
+        <div class="category-banner-item">
+            <img src="{{media url='wysiwyg/banners/category-dinnerware.jpg'}}" alt="Dinnerware">
+            <div class="category-banner-overlay">
+                <span class="category-banner-badge" style="background-color: #ff6d00;">Only for 2 days!</span>
+                <h3 class="category-banner-title">Elegant Dinnerware</h3>
+            </div>
+        </div>
+
+        <!-- Banner 3: Limited Offer -->
+        <div class="category-banner-item">
+            <img src="{{media url='wysiwyg/banners/category-glassware.jpg'}}" alt="Glassware">
+            <div class="category-banner-overlay">
+                <span class="category-banner-badge" style="background-color: #000000;">Limited offer</span>
+                <h3 class="category-banner-title">Premium Glassware</h3>
+            </div>
+        </div>
+
+        <!-- Banner 4: Home Decor -->
+        <div class="category-banner-item">
+            <img src="{{media url='wysiwyg/banners/category-decor.jpg'}}" alt="Home Decor">
+            <div class="category-banner-overlay">
+                <span class="category-banner-badge">Details</span>
+                <h3 class="category-banner-title">Home Decor</h3>
+            </div>
+        </div>
+
+        <!-- Banner 5: Furniture -->
+        <div class="category-banner-item">
+            <img src="{{media url='wysiwyg/banners/category-furniture.jpg'}}" alt="Furniture">
+            <div class="category-banner-overlay">
+                <span class="category-banner-badge">Up to 50% off</span>
+                <h3 class="category-banner-title">Modern Furniture</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="slider-arrow prev" onclick="scrollSlider(-1)" aria-label="Previous">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"></polyline>
+        </svg>
+    </button>
+    <button class="slider-arrow next" onclick="scrollSlider(1)" aria-label="Next">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9,18 15,12 9,6"></polyline>
+        </svg>
+    </button>
+</div>
+
+<script type="text/javascript">
+function scrollSlider(direction) {
+    var slider = document.getElementById('category-slider');
+    var scrollAmount = 340;
+    slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+}
+</script>

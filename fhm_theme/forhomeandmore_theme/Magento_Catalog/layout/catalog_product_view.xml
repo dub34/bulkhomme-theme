@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * ForHomeAndMore Theme - Product View Layout
+ *
+ * @category  ForHomeAndMore
+ * @package   ForHomeAndMore_Theme
+ * @author    ForHomeAndMore
+ * @copyright Copyright (c) 2026 ForHomeAndMore
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="product.info.main">
+                <!-- Product Name -->
+                <referenceBlock name="page.main.title">
+                    <action method="setTemplate">
+                        <argument name="template" xsi:type="string">Magento_Catalog::product/view/title.phtml</argument>
+                    </action>
+                </referenceBlock>
+
+                <!-- Product Price -->
+                <referenceBlock name="product.info.price">
+                    <action method="setTemplate">
+                        <argument name="template" xsi:type="string">Magento_Catalog::product/view/price.phtml</argument>
+                    </action>
+                </referenceBlock>
+
+                <!-- Add to Cart -->
+                <referenceBlock name="product.info.addtocart">
+                    <action method="setTemplate">
+                        <argument name="template" xsi:type="string">Magento_Catalog::product/view/addtocart.phtml</argument>
+                    </action>
+                </referenceBlock>
+            </referenceBlock>
+
+            <!-- Product Media -->
+            <referenceBlock name="product.info.media">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Magento_Catalog::product/view/gallery.phtml</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

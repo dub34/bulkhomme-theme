@@ -1,0 +1,19 @@
+<?php
+/**
+ * Wishlist link - icon only
+ *
+ * @var \Magento\Wishlist\Block\Link $block
+ */
+?>
+<li class="link wishlist" data-bind="scope: 'wishlist'">
+    <a href="<?= $block->escapeUrl($block->getHref()) ?>"
+       title="<?= $block->escapeHtmlAttr(__('Wishlist')) ?>"
+       class="action towishlist">
+        <span class="icon icon-heart"></span>
+        <!-- ko if: wishlist().counter -->
+        <span class="counter qty">
+            <span class="counter-number" data-bind="text: wishlist().counter"></span>
+        </span>
+        <!-- /ko -->
+    </a>
+</li>

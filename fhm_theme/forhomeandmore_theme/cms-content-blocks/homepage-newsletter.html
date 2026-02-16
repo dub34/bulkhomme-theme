@@ -1,0 +1,48 @@
+<!--
+/**
+ * ForHomeAndMore - Newsletter Subscription Section
+ * CMS Block for Homepage - Insert via Content > Blocks
+ * Block Identifier: fhm-newsletter
+ */
+-->
+
+<section class="newsletter-section" style="padding: 80px 0; background-color: #fff;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+            <!-- Decorative Images (Left) -->
+            <div style="display: flex; gap: 20px; align-items: flex-end;">
+                <img src="{{media url='wysiwyg/newsletter/ampersand-logo.png'}}" alt="&" style="width: 380px; height: 380px; object-fit: contain;">
+                <img src="{{media url='wysiwyg/newsletter/more-text.png'}}" alt="MORE" style="width: 200px; height: 100px; object-fit: contain;">
+            </div>
+
+            <!-- Newsletter Form (Right) -->
+            <div>
+                <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 24px;">Subscribe to our newsletter</h2>
+                <p style="font-size: 16px; line-height: 1.6; color: #000; margin-bottom: 32px; max-width: 580px;">
+                    Stay up to date with the latest products, offers, and stories! By subscribing to our newsletter, you'll receive pieces of ForHomeAndMore happiness straight to your inbox.
+                </p>
+
+                <form action="{{store url='newsletter/subscriber/new'}}" method="post" class="newsletter-form" style="margin-bottom: 24px;">
+                    <div style="display: flex; gap: 20px; align-items: flex-end; max-width: 560px;">
+                        <div style="flex: 1; position: relative;">
+                            <input type="email"
+                                   name="email"
+                                   placeholder="Your E-mail"
+                                   required
+                                   style="width: 100%; border: none; border-bottom: 1px solid #000; padding: 12px 0; font-size: 18px; background: transparent; outline: none;">
+                        </div>
+                        <button type="submit"
+                                class="btn"
+                                style="background-color: #6aabdd; color: #fff; padding: 12px 32px; font-weight: 700; font-size: 16px; border: none; cursor: pointer;">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+                <p style="font-size: 16px; color: #000;">
+                    Your country: <a href="#" style="color: #0071bc; text-decoration: underline;">Italy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
