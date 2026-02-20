@@ -97,6 +97,46 @@
         data-testid="product-information-media"
       >
         {{ media_gallery }}
+        <div class="prod-container-top-right">
+          <div class="height-cont">
+            <div class="link-category">
+              <a href='{{ routes.all_products_collection_url }}'>{{ 'products.product.back_to_category' | t }}</a>
+            </div>
+            <div class="attributes">
+              <ul>
+                {%- if closest.product.metafields.custom.spec_1_label != blank -%}
+                <li>
+                  <b>{{ 'products.product.spec_1_label' | t }}:</b>
+                  {{ closest.product.metafields.custom.spec_1_label }}
+                </li>
+                {%- endif -%}
+                {%- if closest.product.metafields.custom.spec_2_label != blank -%}
+                <li>
+                  <b>{{ 'products.product.spec_2_label' | t }}:</b> {{ closest.product.metafields.custom.spec_2_label }}
+                </li>
+                {%- endif -%}
+                {%- if closest.product.metafields.custom.spec_3_label != blank -%}
+                <li>
+                  <b>{{ 'products.product.spec_3_label' | t }}:</b> {{ closest.product.metafields.custom.spec_3_label }}
+                </li>
+                {%- endif -%}
+                {%- if closest.product.metafields.custom.spec_4_label != blank -%}
+                <li>
+                  <b>{{ 'products.product.spec_4_label' | t }}:</b> {{ closest.product.metafields.custom.spec_4_label }}
+                </li>
+                {%- endif -%}
+                {%- if closest.product.metafields.custom.spec_5_label != blank -%}
+                <li>
+                  <b>{{ 'products.product.spec_5_label' | t }}:</b> {{ closest.product.metafields.custom.spec_5_label }}
+                </li>
+                {%- endif -%}
+              </ul>
+            </div>
+          </div>
+          <div class="link-brand">
+            <a href='{{ routes.all_products_collection_url }}'>{{ 'products.product.all_products' | t }}</a>
+          </div>
+        </div>
       </div>
     {% endcapture %}
 
@@ -113,6 +153,69 @@
 </div>
 
 {% stylesheet %}
+  .attributes {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 10%;
+  }
+  .attributes ul {
+    padding: 0px;
+    list-style: none;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+  .attributes ul li {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0px;
+    font-size: 13.5px;
+    line-height: 16px;
+  }
+  .attributes ul li b {
+    display: block;
+    font-weight: 700;
+  }
+  .prod-container-top-right .link-category,
+  .prod-container-top-right .link-brand {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 10%;
+  }
+  .prod-container-top-right .link-category a,
+  .prod-container-top-right .link-brand a {
+    font-weight: 400;
+    text-decoration: underline;
+    font-size: 13.5px;
+    line-height: 16px;
+  }
+  .prod-container-top-right .height-cont {
+    /* flex: 1; */
+  }
+  .prod-container-top-right {
+    display: flex;
+    flex-direction: column;
+  }
+  .prod-container-top-right .link-brand {
+    padding: 20px 10%;
+
+    position: relative;
+  }
+  @media screen and (min-width: 750px) {
+    .prod-container-top-right .link-brand {
+      background: #caa288;
+    }
+  }
+  .prod-container-top-right .link-brand:after {
+    content: '';
+    border: solid #090606;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 5px 8px 8px 5px;
+    transform: rotate(-45deg) translateY(-50%);
+    -webkit-transform: rotate(-45deg) translateY(-50%);
+    position: absolute;
+    right: 10%;
+    top: 50%;
+  }
   .product-information {
     gap: var(--gap) 0;
   }
@@ -133,11 +236,29 @@
     order: 0;
     width: 0;
     min-width: 100%;
+    display: flex;
+  }
+
+  .product-media-container img {
+    max-height: 100vh;
   }
 
   .product-information__media .placeholder-image {
     width: 100%;
     height: 100%;
+  }
+
+  .product-media-constraint-wrapper .product-media::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background: #352c25;
+    opacity: 0.1;
+    z-index: 0;
   }
 
   /* Mobile styles */
@@ -153,6 +274,12 @@
 
   /* Desktop styles */
   @media screen and (min-width: 750px) {
+    .prod-container-top-right {
+      flex: 0 0 30%;
+    }
+    .product-information__media {
+      flex-direction: row;
+    }
     .product-information__grid {
       grid-column: 2;
     }

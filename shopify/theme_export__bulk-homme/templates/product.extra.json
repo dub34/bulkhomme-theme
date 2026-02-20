@@ -297,14 +297,17 @@
                       "type": "add-to-cart",
                       "static": true,
                       "settings": {
-                        "style_class": "button"
+                        "style_class": "button",
+                        "background_color": "#d51e4c"
                       },
                       "blocks": {}
                     },
                     "accelerated-checkout": {
                       "type": "accelerated-checkout",
                       "static": true,
-                      "settings": {},
+                      "settings": {
+                        "background_color": "#d51e4c"
+                      },
                       "blocks": {}
                     }
                   },
